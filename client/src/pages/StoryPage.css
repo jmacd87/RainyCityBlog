@@ -1,0 +1,143 @@
+.story-layout-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+}
+.similar-stories-page-container {
+  width: 60%;
+  display: flex;
+  margin-top: 11em;
+}
+
+.story-container {
+  display: flex;
+  flex-direction: column;
+  margin: 30px auto;
+  margin-top: 3em;
+  padding: 0 20px;
+  box-sizing: border-box;
+  min-height: 500px;
+}
+
+.story-top-border {
+  border: 1px solid var(--evergreen-green);
+  width: 100%;
+}
+
+.story-author-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 90%;
+}
+
+.story-main-title {
+  display: inline-block;
+  padding: 3px 10px;
+  background-color: var(--evergreen-green);
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--background);
+}
+.back-button {
+  background-color: transparent;
+  border: 1px solid var(--evergreen-green);
+  border-radius: 0px;
+  color: var(--evergreen-green);
+  text-transform: uppercase;
+}
+.story-date {
+  font-size: 14px;
+  color: #888888;
+  margin-left: 10px;
+}
+
+.story-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.story-image-container {
+  width: 90%;
+  overflow: hidden;
+}
+
+.story-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.story-text-container {
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.story-paragraph {
+  font-size: 20px;
+  color: var(--mist-gray);
+  margin-bottom: 10px;
+  font-family: 'Breve';
+  line-break: auto;
+  width: 65%;
+}
+.story-section-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 1.5em;
+  color: var(--ocean-blue);
+}
+
+.story-quote {
+  font-style: italic;
+  color: var(--evergreen-green);
+  border-left: 4px solid #ccc;
+  padding-left: 10px;
+  margin-left: 20px;
+  font-size: 26px;
+  width: 65%;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .story-author-date,
+  .story-image-container,
+  .story-paragraph {
+    width: 100%;
+  }
+  .story-title {
+    font-size: 28px;
+  }
+
+  .story-main-title,
+  .story-date {
+    font-size: 16px;
+  }
+
+  .story-paragraph {
+    font-size: 18px;
+    width: 100%;
+  }
+  .story-quote {
+    font-size: 22px;
+    width: 90%;
+  }
+  .back-button {
+    padding: 3px 10px;
+  }
+}
+@media (max-width: 768px) {
+  .story-layout-container {
+    flex-direction: column;
+  }
+
+  .similar-stories-page-container {
+    width: 95%;
+    margin-top: 0px;
+    padding: 20px;
+  }
+}

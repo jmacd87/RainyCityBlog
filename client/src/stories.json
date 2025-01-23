@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "title": "The Dawn of Artificial Intelligence",
+    "date": "March 5, 2025",
+    "author": "Alice Johnson",
+    "storyText": [
+      "Artificial intelligence is transforming industries across the globe.",
+      "From healthcare to finance, AI is being leveraged to drive innovation and solve complex problems.",
+      "Experts predict that AI will continue to evolve at an unprecedented rate, leading to new breakthroughs and possibilities.",
+      "As we embrace this technology, it's crucial to consider the ethical implications and ensure that AI is used responsibly."
+    ],
+    "imageUrl": "/assets/techimage2.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Exploring the Cosmos: Beyond Our Planet",
+    "date": "April 10, 2025",
+    "author": "David Martinez",
+    "storyText": [
+      "Space exploration has always been a source of fascination and discovery.",
+      "With advancements in technology, we are now able to explore deeper into the cosmos than ever before.",
+      "Recent missions have provided new insights into distant planets, stars, and galaxies.",
+      "The future of space travel promises even more exciting possibilities, including the potential for human colonization on other planets."
+    ],
+    "imageUrl": "/assets/techimage1.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Sustainability in the Modern World",
+    "date": "May 15, 2025",
+    "author": "Emma Williams",
+    "storyText": [
+      "Sustainability has become a critical focus in today's world.",
+      "From renewable energy sources to eco-friendly practices, efforts are being made to reduce our carbon footprint.",
+      "Organizations and individuals alike are taking steps to promote sustainability and protect the environment.",
+      "As we move forward, it's essential to continue these efforts and work towards a greener, more sustainable future."
+    ],
+    "imageUrl": "/assets/techimage3.jpg"
+  },
+  {
+    "id": 4,
+    "title": "The Future of Work: Remote and Flexible",
+    "date": "June 20, 2025",
+    "author": "Michael Brown",
+    "storyText": [
+      "The concept of work has evolved significantly in recent years.",
+      "Remote work and flexible schedules have become more common, offering employees greater autonomy and work-life balance.",
+      "This shift has also created opportunities for businesses to access a global talent pool and reduce operational costs.",
+      "As technology continues to advance, the future of work will likely see even more changes and innovations."
+    ],
+    "imageUrl": "/assets/techimage4.jpg"
+  }
+]

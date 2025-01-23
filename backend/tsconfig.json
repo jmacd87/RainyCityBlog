@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "src/**/*", // Include all TypeScript files in src
+    "src/utils/mongoose.ts" // Explicitly include mongoose.ts if needed
+  ],
+  "exclude": [
+    "node_modules", // Exclude node_modules
+    "dist", // Exclude build output
+    "vercel.json" // Exclude Vercel configuration file
+  ]
+}

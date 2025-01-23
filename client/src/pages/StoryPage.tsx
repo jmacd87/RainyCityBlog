@@ -1,0 +1,95 @@
+import React, { useEffect, useState } from 'react';
+import '../App.css';
+import './StoryPage.css';
+import { useParams, useNavigate } from 'react-router-dom';
+import { usePosts } from '../contexts/PostsContext';
+import ShareStory from '../components/ShareStory';
+import SimilarStories from '../components/SimilarStories';
+
+interface StoryTextSection {
+  title?: string;
+  quote?: string;
+  content?: string;
+}
+
+const StoryPage: React.FC = () => {
+  const { id } = useParams<{ id?: string }>();
+  const navigate = useNavigate();
+  const { posts: contextPosts } = usePosts();
+  const [posts, setPosts] = useState<any[]>(contextPosts || []);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const storedPosts = sessionStorage.getItem('posts');
+    if (storedPosts) {
+      setPosts(JSON.parse(storedPosts));
+      setLoading(false);
+    } else if (contextPosts.length > 0) {
+      setPosts(contextPosts);
+      setLoading(false);
+    } else {
+      setLoading(false);
+    }
+  }, [contextPosts]);
+
+  const story = posts.find((post) => post.id.toString() === id);
+  useEffect(() => {
+    console.log('Story Text Structure:', story?.storyText);
+  }, [story]);
+
+  if (!id || loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!story) return <div>Story not found</div>;
+
+  const renderStorySection = (section: StoryTextSection, index: number) => (
+    <div key={index} className="story-section">
+      {section.title && (
+        <h3 className="story-section-title">{section.title}</h3>
+      )}
+      {section.content && <p className="story-paragraph">{section.content}</p>}
+      {section.quote && (
+        <blockquote className="story-quote">{section.quote}</blockquote>
+      )}
+    </div>
+  );
+
+  return (
+    <>
+      <div className="story-layout-container">
+        <div className="story-container">
+          <div className="story-author-date">
+            <div>
+              <h2 className="story-main-title">{story.author}</h2>
+              <span className="story-date">{story.date}</span>
+            </div>
+            <button className="back-button" onClick={() => navigate('/')}>
+              Back
+            </button>
+          </div>
+
+          <h1 className="story-title">{story.title}</h1>
+          <div className="story-image-container">
+            <img
+              src={story.imageUrl}
+              alt={story.title}
+              className="story-image"
+            />
+          </div>
+          <ShareStory story={story} />
+          <div className="story-text-container">
+            {story.storyText.map((section: StoryTextSection, index: number) =>
+              renderStorySection(section, index)
+            )}
+          </div>
+        </div>
+        <div className="similar-stories-page-container">
+          <SimilarStories currentStoryId={id} />
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default StoryPage;
