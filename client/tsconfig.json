@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "composite": true, // Required for project references
     "module": "commonjs",
     "target": "es6",
     "outDir": "./dist",
@@ -12,5 +13,8 @@
     "allowSyntheticDefaultImports": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "vercel.json"]
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }
