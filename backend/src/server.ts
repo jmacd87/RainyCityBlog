@@ -17,7 +17,11 @@ const PORT: number = parseInt(process.env.PORT as string, 10) || 3000;
 connectDB();
 
 // Middleware setup
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL, // Allow specific origin
+  })
+);
 app.use(express.json());
 app.use('/api/posts', postsRouter);
 
