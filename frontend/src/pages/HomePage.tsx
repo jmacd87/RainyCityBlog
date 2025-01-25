@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
     } else {
       // If posts aren't in localStorage, fetch them from API
       api
-        .get('http://localhost:3000/api/posts')
+        .get(`${process.env.VITE_BACKEND_BASE_URL}/api/posts`)
         .then((response) => {
           setPosts(response.data);
           // Store fetched posts in localStorage
