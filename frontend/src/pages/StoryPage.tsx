@@ -7,6 +7,7 @@ import ShareStory from '../components/ShareStory';
 import SimilarStories from '../components/SimilarStories';
 import Loader from '../components/Loader';
 import MessageScreen from '../components/MessageScreen';
+
 interface StoryTextSection {
   title?: string;
   quote?: string;
@@ -19,6 +20,7 @@ const StoryPage: React.FC = () => {
   const { posts: contextPosts } = usePosts();
   const [posts, setPosts] = useState<any[]>(contextPosts || []);
   const [loading, setLoading] = useState<boolean>(true);
+  const [imageLoading, setImageLoading] = useState<boolean>(true); // Image loading state
 
   useEffect(() => {
     const storedPosts = sessionStorage.getItem('posts');
@@ -34,6 +36,7 @@ const StoryPage: React.FC = () => {
   }, [contextPosts]);
 
   const story = posts.find((post) => post.id.toString() === id);
+
   useEffect(() => {
     console.log('Story Text Structure:', story?.storyText);
   }, [story]);
@@ -74,10 +77,17 @@ const StoryPage: React.FC = () => {
 
           <h1 className="story-title">{story.title}</h1>
           <div className="story-image-container">
+            {imageLoading && (
+              <div className="image-loader">
+                <Loader />
+              </div>
+            )}
             <img
               src={story.imageUrl}
               alt={story.title}
-              className="story-image"
+              className={`story-image ${imageLoading ? 'hidden' : ''}`}
+              onLoad={() => setImageLoading(false)}
+              onError={() => setImageLoading(false)} // Ensure loader hides if image fails
             />
           </div>
           <div style={{ marginLeft: '5%' }}>

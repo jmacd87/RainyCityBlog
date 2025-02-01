@@ -18,7 +18,6 @@ const ContentCard: React.FC<ContentCardProps> = ({
   summary,
   thumbnail,
 }) => {
-  console.log('thumbnail', thumbnail);
   return (
     <Link to={`/story/${id}`} style={{ textDecoration: 'none' }}>
       <div className="card">
