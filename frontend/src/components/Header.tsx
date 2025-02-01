@@ -7,7 +7,7 @@ const Header: React.FunctionComponent<IAppProps> = () => {
   return (
     <div className="header-style">
       <Link to="/">
-        <img src={logo} width="100px" />
+        <img src={logo} width="90px" />
       </Link>
       {/* <Link to="/contact">
         <div>Contact</div>
