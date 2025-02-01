@@ -168,6 +168,9 @@
   .story-image-container {
     padding-bottom: 56.25%; /* Maintain aspect ratio */
   }
+  .story-author-date {
+    width: 85%;
+  }
 }
 
 .story-text-wrapper {
