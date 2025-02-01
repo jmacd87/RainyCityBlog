@@ -5,7 +5,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { usePosts } from '../contexts/PostsContext';
 import ShareStory from '../components/ShareStory';
 import SimilarStories from '../components/SimilarStories';
-
+import LoadingScreen from '../components/LoadingScreen';
+import MessageScreen from '../components/MessageScreen';
 interface StoryTextSection {
   title?: string;
   quote?: string;
@@ -38,10 +39,10 @@ const StoryPage: React.FC = () => {
   }, [story]);
 
   if (!id || loading) {
-    return <div>Loading...</div>;
+    return <LoadingScreen />;
   }
 
-  if (!story) return <div>Story not found</div>;
+  if (!story) return <MessageScreen message={'Story not found'} />;
 
   const renderStorySection = (section: StoryTextSection, index: number) => (
     <div key={index} className="story-section">
@@ -62,7 +63,9 @@ const StoryPage: React.FC = () => {
           <div className="story-author-date">
             <div>
               <h2 className="story-main-title">{story.author}</h2>
-              <span className="story-date">{story.date}</span>
+              <span className="story-date">
+                {new Date(story.date).toLocaleDateString()}
+              </span>
             </div>
             <button className="back-button" onClick={() => navigate('/')}>
               Back
@@ -77,11 +80,15 @@ const StoryPage: React.FC = () => {
               className="story-image"
             />
           </div>
-          <ShareStory story={story} />
-          <div className="story-text-container">
-            {story.storyText.map((section: StoryTextSection, index: number) =>
-              renderStorySection(section, index)
-            )}
+          <div style={{ marginLeft: '5%' }}>
+            <ShareStory story={story} />
+          </div>
+          <div className="story-text-wrapper">
+            <div className="story-text-container">
+              {story.storyText.map((section: StoryTextSection, index: number) =>
+                renderStorySection(section, index)
+              )}
+            </div>
           </div>
         </div>
         <div className="similar-stories-page-container">

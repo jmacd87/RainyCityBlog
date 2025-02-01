@@ -13,20 +13,16 @@ const HomePage: React.FC = () => {
   const [error, setError] = useState<string | null>(null); // For error handling
 
   useEffect(() => {
-    // Check if posts are already loaded in localStorage
     const storedPosts = sessionStorage.getItem('posts');
     if (storedPosts) {
-      // If posts are in localStorage, use them
       setPosts(JSON.parse(storedPosts));
       setIsLoading(false);
     } else {
-      // If posts aren't in localStorage, fetch them from API
       api
         .get(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/posts`)
         .then((response) => {
           setPosts(response.data);
-          // Store fetched posts in localStorage
-          localStorage.setItem('posts', JSON.stringify(response.data));
+          sessionStorage.setItem('posts', JSON.stringify(response.data));
         })
         .catch((err) => {
           console.error(err);
@@ -37,10 +33,6 @@ const HomePage: React.FC = () => {
         });
     }
   }, [setPosts]);
-
-  if (isLoading) {
-    return <div style={{ minHeight: 800 }}>Loading...</div>;
-  }
 
   if (error) {
     return <div style={{ minHeight: 800 }}>{error}</div>;

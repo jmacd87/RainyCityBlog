@@ -1,0 +1,19 @@
+.message-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+  width: 100vw;
+  background-color: var(--background);
+}
+
+.message {
+  font-size: 24px;
+  color: var(--mist-gray);
+}
+
+.error {
+  font-size: 24px;
+  color: red;
+}

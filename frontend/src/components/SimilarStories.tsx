@@ -2,16 +2,20 @@ import React from 'react';
 import { usePosts } from '../contexts/PostsContext';
 import { useNavigate } from 'react-router-dom';
 import './SimilarStories.css';
-
+import { Post } from '../types/Post';
 const SimilarStories: React.FC<{ currentStoryId: string }> = ({
   currentStoryId,
 }) => {
-  const { posts } = usePosts();
+  const { posts: contextPosts } = usePosts();
   const navigate = useNavigate();
 
-  // Filter out the current story to avoid showing it in the similar stories section
+  const storedPosts = sessionStorage.getItem('posts');
+  const parsedStoredPosts = storedPosts ? JSON.parse(storedPosts) : null;
+
+  const posts = parsedStoredPosts || contextPosts;
+
   const similarPosts = posts.filter(
-    (post) => post.id.toString() !== currentStoryId
+    (post: { id: number }) => post.id.toString() !== currentStoryId
   );
 
   return (
@@ -19,7 +23,7 @@ const SimilarStories: React.FC<{ currentStoryId: string }> = ({
       <h3 className="similar-stories-title">Similar Stories</h3>
       <br />
       <div className="similar-stories-list">
-        {similarPosts.map((post) => (
+        {similarPosts.map((post: Post) => (
           <div
             key={post.id}
             className="similar-story-item"
