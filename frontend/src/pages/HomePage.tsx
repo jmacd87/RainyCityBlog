@@ -4,8 +4,10 @@ import ContentCard from '../components/ContentCard';
 import Title from '../components/Title';
 import BlogPost from '../components/BlogPost';
 import api from '../services/api';
+import LoadingScreen from '../components/LoadingScreen';
 import { usePosts } from '../contexts/PostsContext';
 import '../App.css';
+import MessageScreen from '../components/MessageScreen';
 
 const HomePage: React.FC = () => {
   const { posts, setPosts } = usePosts();
@@ -35,7 +37,11 @@ const HomePage: React.FC = () => {
   }, [setPosts]);
 
   if (error) {
-    return <div style={{ minHeight: 800 }}>{error}</div>;
+    return <MessageScreen error={error} />;
+  }
+
+  if (isLoading) {
+    return <LoadingScreen />;
   }
 
   return (
