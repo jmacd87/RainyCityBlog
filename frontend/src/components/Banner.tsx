@@ -1,11 +1,14 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '../assets/SeattleBanner2.jpeg';
 import './Banner.css';
+import Loader from './Loader';
 
 interface IAppProps {}
 
 const Banner: React.FunctionComponent<IAppProps> = () => {
-  React.useEffect(() => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
     // Rain Effect JavaScript
     const banner = document.querySelector('.image-wrapper');
     const rainContainer = document.createElement('div');
@@ -46,7 +49,17 @@ const Banner: React.FunctionComponent<IAppProps> = () => {
   return (
     <div className="banner-container">
       <div className="image-wrapper">
-        <img src={logo} className="banner-image" alt="Blog logo" />
+        {!imageLoaded && (
+          <div className="loader-overlay">
+            <Loader />
+          </div>
+        )}
+        <img
+          src={logo}
+          className="banner-image"
+          alt="Blog logo"
+          onLoad={() => setImageLoaded(true)}
+        />
         <div className="overlay-text">
           <span style={{ color: 'var(--ocean-blue)' }}>Rainy</span>
           <span style={{ color: 'var(--evergreen-green)' }}> City </span>

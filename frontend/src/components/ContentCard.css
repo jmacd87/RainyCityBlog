@@ -4,16 +4,18 @@
 
 .card {
   width: calc(100% - 40px);
-  height: 90%;
   background-color: #404040;
   cursor: pointer;
   margin: 20px;
   padding-bottom: 20px;
+  display: flex;
+  flex-direction: column; /* Flex container to handle column layout */
+  height: 100%; /* Full height */
 }
 
 .card-image-container {
   width: 100%;
-  height: 55%;
+  height: 50%; /* Set a fixed height for uniformity */
   overflow: hidden;
 }
 
@@ -35,6 +37,10 @@
   color: #fff;
   box-sizing: border-box;
   font-family: 'Breve';
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensure description stays within card */
+  height: auto;
 }
 
 .description h3 {
@@ -43,6 +49,7 @@
   font-family: 'system-ui';
   text-transform: uppercase;
   color: var(--ocean-blue);
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 @media (max-width: 768px) {

@@ -1,7 +1,7 @@
 .outer-card-container {
   margin: 0 auto;
   width: calc(100% - 30px);
-  box-sizing: border-box;
+  margin-bottom: 60px;
 }
 .card-container {
   display: grid;
