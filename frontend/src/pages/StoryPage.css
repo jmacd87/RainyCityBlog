@@ -150,6 +150,9 @@
     margin-top: 0px;
     padding: 20px;
   }
+  .story-image-container {
+    height: 275px;
+  }
 }
 .story-text-wrapper {
   display: flex;
