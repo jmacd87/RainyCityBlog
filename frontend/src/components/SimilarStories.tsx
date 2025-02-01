@@ -30,7 +30,7 @@ const SimilarStories: React.FC<{ currentStoryId: string }> = ({
             onClick={() => navigate(`/story/${post.id}`)}
           >
             <div className="thumbnail">
-              <img src={post.imageUrl} alt={post.title} />
+              <img src={post.thumbnail} alt={post.title} />
             </div>
             <div className="similar-story-title">{post.title}</div>
           </div>

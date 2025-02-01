@@ -5,7 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { usePosts } from '../contexts/PostsContext';
 import ShareStory from '../components/ShareStory';
 import SimilarStories from '../components/SimilarStories';
-import LoadingScreen from '../components/LoadingScreen';
+import Loader from '../components/Loader';
 import MessageScreen from '../components/MessageScreen';
 interface StoryTextSection {
   title?: string;
@@ -39,7 +39,7 @@ const StoryPage: React.FC = () => {
   }, [story]);
 
   if (!id || loading) {
-    return <LoadingScreen />;
+    return <Loader />;
   }
 
   if (!story) return <MessageScreen message={'Story not found'} />;

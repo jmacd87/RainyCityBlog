@@ -10,4 +10,5 @@ export interface Post {
   summary: string;
   storyText: StoryTextItem[];
   imageUrl: string;
+  thumbnail: string;
 }

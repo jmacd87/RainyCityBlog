@@ -56,7 +56,7 @@ const HomePage: React.FC = () => {
                     author={story.author}
                     title={story.title}
                     summary={story.summary}
-                    imageUrl={story.imageUrl}
+                    thumbnail={story.thumbnail}
                   />
                 )
               )

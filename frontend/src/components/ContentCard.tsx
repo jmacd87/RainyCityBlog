@@ -8,7 +8,7 @@ type ContentCardProps = {
   title: string;
   author: string;
   summary: string;
-  imageUrl: string;
+  thumbnail: string;
 };
 
 const ContentCard: React.FC<ContentCardProps> = ({
@@ -16,13 +16,14 @@ const ContentCard: React.FC<ContentCardProps> = ({
   title,
   author,
   summary,
-  imageUrl,
+  thumbnail,
 }) => {
+  console.log('thumbnail', thumbnail);
   return (
     <Link to={`/story/${id}`} style={{ textDecoration: 'none' }}>
       <div className="card">
         <div className="card-image-container">
-          <img src={imageUrl} alt={`Image ${id}`} className="image" />
+          <img src={thumbnail} alt={`Image ${id}`} className="image" />
         </div>
         <div className="description">
           <h3>{title}</h3>
