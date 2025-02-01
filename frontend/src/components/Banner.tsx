@@ -1,15 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
 import logo from '../assets/SeattleBanner2.jpeg';
 import './Banner.css';
-import Loader from './Loader';
+import Loader from './Loader'; // Assuming you have a Loader component
 
 interface IAppProps {}
 
 const Banner: React.FunctionComponent<IAppProps> = () => {
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = React.useState(false);
 
-  useEffect(() => {
-    // Rain Effect JavaScript
+  // Preload the image
+  React.useEffect(() => {
+    const image = new Image();
+    image.src = logo;
+
+    image.onload = () => {
+      console.log('Image has loaded');
+      setIsImageLoaded(true); // Set the state to true once the image is loaded
+    };
+
+    image.onerror = () => {
+      console.error('Image failed to load');
+      setIsImageLoaded(true); // Stop the loader even if the image fails
+    };
+  }, []);
+
+  // Rain Effect JavaScript
+  React.useEffect(() => {
+    if (!isImageLoaded) return; // Only apply the rain effect if the image is loaded
+
     const banner = document.querySelector('.image-wrapper');
     const rainContainer = document.createElement('div');
     rainContainer.classList.add('rain');
@@ -29,7 +47,7 @@ const Banner: React.FunctionComponent<IAppProps> = () => {
     let rainInterval: number;
 
     const handleMouseOver = () => {
-      rainInterval = window.setInterval(createRaindrop, 100); // create a raindrop every 100ms
+      rainInterval = window.setInterval(createRaindrop, 75); // create a raindrop every 100ms
     };
 
     const handleMouseOut = () => {
@@ -43,32 +61,29 @@ const Banner: React.FunctionComponent<IAppProps> = () => {
     return () => {
       banner?.removeEventListener('mouseover', handleMouseOver);
       banner?.removeEventListener('mouseout', handleMouseOut);
+      rainContainer.remove(); // Remove the rain container on cleanup
     };
-  }, []);
+  }, [isImageLoaded]); // Only run this effect when isImageLoaded changes
 
   return (
     <div className="banner-container">
-      <div className="image-wrapper">
-        {!imageLoaded && (
-          <div className="loader-overlay">
-            <Loader />
+      {!isImageLoaded ? (
+        <div className="loader-overlay">
+          <Loader /> {/* Show the loader while the image is loading */}
+        </div>
+      ) : (
+        <div className="image-wrapper">
+          <img src={logo} className="banner-image" alt="Blog logo" />
+          <div className="overlay-text">
+            <span style={{ color: 'var(--ocean-blue)' }}>Rainy</span>
+            <span style={{ color: 'var(--evergreen-green)' }}> City </span>
           </div>
-        )}
-        <img
-          src={logo}
-          className="banner-image"
-          alt="Blog logo"
-          onLoad={() => setImageLoaded(true)}
-        />
-        <div className="overlay-text">
-          <span style={{ color: 'var(--ocean-blue)' }}>Rainy</span>
-          <span style={{ color: 'var(--evergreen-green)' }}> City </span>
+          <div>
+            <span className="overlay-text2 glowing-title">Tech</span>
+          </div>
+          <div className="rain"></div>
         </div>
-        <div>
-          <span className="overlay-text2 glowing-title">Tech</span>
-        </div>
-        <div className="rain"></div>
-      </div>
+      )}
     </div>
   );
 };
